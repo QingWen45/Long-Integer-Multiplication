@@ -3,7 +3,7 @@
 
 int is_negative = 0;
 
-//»ñÈ¡³¤ÕûÊı£¬·µ»ØÕûÊı³¤¶È¼Ó1
+//è·å–é•¿æ•´æ•°ï¼Œè¿”å›æ•´æ•°é•¿åº¦åŠ 1
 char* get_num(char *str, int *n, int strlen)
 {
     int count = 0,i;
@@ -18,8 +18,8 @@ char* get_num(char *str, int *n, int strlen)
         count ++;
         str[count - 1] = cha;
     }
-    while (cha != '\n'); //ÊäÈë»Ø³µÊ±ÖÕÖ¹ÊäÈë
-    if (str[0]=='-') //ÊäÈëÎª¸ºÊıÊ±µÄ´¦Àí
+    while (cha != '\n'); //è¾“å…¥å›è½¦æ—¶ç»ˆæ­¢è¾“å…¥
+    if (str[0]=='-') //è¾“å…¥ä¸ºè´Ÿæ•°æ—¶çš„å¤„ç†
     {
         if(is_negative == 0)
             is_negative = 1;
@@ -36,22 +36,22 @@ char* get_num(char *str, int *n, int strlen)
     return str;
 }
 
-//½«×Ö·û´®×ª»¯ÎªÕûÊıÊı×é
+//å°†å­—ç¬¦ä¸²è½¬åŒ–ä¸ºæ•´æ•°æ•°ç»„
 void str_to_arr(char *s, int *a, int n)
 {
     int i,j;
     a[0] = n -1 ;
     for(i=1, j=n-1; i<n;i++,j--)-1
     {
-        a[j] = s[i-1] - 48; //48Îª0µÄASCII±àÂë
+        a[j] = s[i-1] - 48; //48ä¸º0çš„ASCIIç¼–ç 
     }
 }
 
-//Êä³ö³¤ÕûÊı
+//è¾“å‡ºé•¿æ•´æ•°
 void print_int(int *a, int n)
 {
     int i=n-1;
-    while (a[i] == 0) i--; //È¥³ıÕûÊıÇ°¶àÓàµÄ0
+    while (a[i] == 0 && i != 1) i--; //å»é™¤æ•´æ•°å‰å¤šä½™çš„0
     for(;i>0;i--)
     {
         printf("%d", a[i]);
@@ -59,12 +59,12 @@ void print_int(int *a, int n)
     printf("\n");
 }
 
-//³Ë·¨º¯Êı
+//ä¹˜æ³•å‡½æ•°
 void multiply_arr(int *a, int *b, int *c, int n1, int n2)
 {
     int i,j,k,temp=0, n3 = n1 + n2 + 1;
     c[0] = n3;
-    //³õÊ¼»¯½á¹ûÊı×é
+    //åˆå§‹åŒ–ç»“æœæ•°ç»„
     for(i=1;i<n3;i++) c[i] = 0;
 
     for(i=1;i<n1;i++)
@@ -74,7 +74,7 @@ void multiply_arr(int *a, int *b, int *c, int n1, int n2)
             c[k] += a[i] * b[j];
         }
 
-    //½øÎ»²Ù×÷
+    //è¿›ä½æ“ä½œ
     for(i=1;i<n3;i++)
     {
         c[i] += temp;
@@ -86,29 +86,29 @@ void multiply_arr(int *a, int *b, int *c, int n1, int n2)
 
 int main()
 {
-    int strlenth = 5; //Ä¬ÈÏ³¤¶È
+    int strlenth = 5; //é»˜è®¤é•¿åº¦
     int count1, count2;
 
-    printf("ÇëÊäÈëµÚÒ»¸öÕûÊı:\n");
-    char *str1 = (char*)calloc(strlenth, sizeof(char*)); //»ñÈ¡µÚÒ»¸öÕûÊı
-    str1 = get_num(str1, &count1, strlenth); //»ñÈ¡µÚÒ»¸öÕûÊı³¤¶È
+    printf("è¯·è¾“å…¥ç¬¬ä¸€ä¸ªæ•´æ•°:\n");
+    char *str1 = (char*)calloc(strlenth, sizeof(char*)); //è·å–ç¬¬ä¸€ä¸ªæ•´æ•°
+    str1 = get_num(str1, &count1, strlenth); //è·å–ç¬¬ä¸€ä¸ªæ•´æ•°é•¿åº¦
 
-    printf("ÇëÊäÈëµÚ¶ş¸öÕûÊı:\n");
-    char *str2 = (char*)calloc(strlenth, sizeof(char*)); //»ñÈ¡µÚ¶ş¸öÕûÊı
-    str2 = get_num(str2, &count2, strlenth); //»ñÈ¡µÚ¶ş¸öÕûÊı³¤¶È
+    printf("è¯·è¾“å…¥ç¬¬äºŒä¸ªæ•´æ•°:\n");
+    char *str2 = (char*)calloc(strlenth, sizeof(char*)); //è·å–ç¬¬äºŒä¸ªæ•´æ•°
+    str2 = get_num(str2, &count2, strlenth); //è·å–ç¬¬äºŒä¸ªæ•´æ•°é•¿åº¦
 
-    int a[count1], b[count2], fin[count1 + count2 + 1]; //Á½¸ö³ËÊı£¬Ò»¸ö»ı
+    int a[count1], b[count2], fin[count1 + count2 + 1]; //ä¸¤ä¸ªä¹˜æ•°ï¼Œä¸€ä¸ªç§¯
 
     str_to_arr(str1, a, count1);
-    str_to_arr(str2, b, count2); //½«³ËÊı×ª»»Îª³¤ÕûÊı
+    str_to_arr(str2, b, count2); //å°†ä¹˜æ•°è½¬æ¢ä¸ºé•¿æ•´æ•°
 
     multiply_arr(a,b,fin,count1,count2);
 
-    printf("Á½¸öÕûÊıµÄ»ıÎª:\n");
+    printf("ä¸¤ä¸ªæ•´æ•°çš„ç§¯ä¸º:\n");
     if(is_negative == 1) printf("-");
     print_int(fin, count1 + count2);
 
-    free(str1); //ÊÍ·ÅÄÚ´æ
+    free(str1); //é‡Šæ”¾å†…å­˜
     free(str2);
     return 0;
 }
